@@ -1,0 +1,38 @@
+{
+  "name": "kpk-dashboard",
+  "version": "0.0.1",
+  "description": "Prototype for KPK's prevention dashboard",
+  "main": "./app/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app/server.js localhost",
+    "serve": "pm2 start ./app/server.js --name=\"bappenas-ipd\" --watch",
+    "sass": "cd stylesheets && sass --watch scss:css --style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahdanahmad/kpk-dashboard.git"
+  },
+  "author": "mahdan.ahmad@un.or.id",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mahdanahmad/kpk-dashboard/issues"
+  },
+  "homepage": "https://github.com/mahdanahmad/kpk-dashboard#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "crypto-js": "^3.1.9-1",
+    "d3": "^5.0.0",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "fast-csv": "^2.4.1",
+    "lodash": "^4.17.5",
+    "moment": "^2.22.0",
+    "mongodb": "^3.0.5",
+    "nodemon": "^1.17.3",
+    "topojson": "^3.0.2"
+  }
+}
