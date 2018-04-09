@@ -1,8 +1,8 @@
 const Model     = require('./model');
 
-const table     = 'delik';
-const fillable  = ['nama'];
-const required  = ['nama'];
+const table     = 'reports';
+const fillable  = ['delik'];
+const required  = ['delik'];
 const preserved	= [];
 const hidden	= [];
 

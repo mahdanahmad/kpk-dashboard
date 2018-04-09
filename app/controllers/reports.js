@@ -1,12 +1,7 @@
 const _			= require('lodash');
 const async		= require('async');
 
-const db		= require('../connection');
-
-const cities	= require('../models/cities');
-const provinces	= require('../models/provinces');
-
-String.prototype.titlecase	= function() { return this.toLowerCase().replace(/\b\w/g, l => l.toUpperCase()); }
+const reports	= require('../models/reports');
 
 /**
  * Display a listing of the resource.
@@ -24,7 +19,7 @@ module.exports.index = (input, callback) => {
 
 	async.waterfall([
 		(flowCallback) => {
-			provinces.findAll({}, { limit, offset }, (err, result) => flowCallback(err, result.map((o) => ({ id: o.province_id, name: o.province_name }))));
+			reports.findAll({}, { limit, offset }, (err, result) => flowCallback(err, result));
 		}
 	], (err, asyncResult) => {
 		if (err) {
@@ -53,8 +48,8 @@ module.exports.store = (input, callback) => {
 	async.waterfall([
 		(flowCallback) => {
 			let ascertain	= {};
-			provinces.insertOne(_.assign(input, ascertain), (err, result) => flowCallback(err, result));
-		}
+			reports.insertOne(_.assign(input, ascertain), (err, result) => flowCallback(err, result));
+		},
 	], (err, asyncResult) => {
 		if (err) {
 			response    = 'FAILED';
@@ -81,14 +76,7 @@ module.exports.show = (id, callback) => {
 
 	async.waterfall([
 		(flowCallback) => {
-			if (db.isObjectID(id)) {
-				provinces.find(id, (err, result) => flowCallback(err, result));
-			} else {
-				provinces.findOne({ province_id: id }, (err, result) => flowCallback(err, result));
-			}
-		},
-		(prov, flowCallback) => {
-			cities.findAll({ province_id: prov.province_id }, {}, (err, result) => flowCallback(err, { id: prov.province_id, name: prov.province_name, cities: result.map((o) => ({ id: o.city_id, name: o.city_name.titlecase() })) }))
+			reports.find(id, (err, result) => flowCallback(err, result));
 		}
 	], (err, asyncResult) => {
 		if (err) {
@@ -117,16 +105,12 @@ module.exports.update = (id, input, callback) => {
 
 	async.waterfall([
 		(flowCallback) => {
-			if (db.isObjectID(id)) {
-				provinces.find(id, (err, result) => flowCallback(err, result));
-			} else {
-				provinces.findOne({ province_id: id }, (err, result) => flowCallback(err, result));
-			}
+			reports.find(id, (err, result) => flowCallback(err, result));
 		},
 		(checked, flowCallback) => {
 			if (checked) {
 				let ascertain	= {};
-				provinces.update(checked._id, _.assign(input, ascertain), (err, result) => flowCallback(err, result))
+				reports.update(checked._id, _.assign(input, ascertain), (err, result) => flowCallback(err, result))
 			} else {
 				flowCallback('Data with id ' + id + ' not found.');
 			}
@@ -159,15 +143,11 @@ module.exports.destroy = (id, input, callback) => {
 
 	async.waterfall([
 		(flowCallback) => {
-			if (db.isObjectID(id)) {
-				provinces.find(id, (err, result) => flowCallback(err, result));
-			} else {
-				provinces.findOne({ province_id: id }, (err, result) => flowCallback(err, result));
-			}
+			reports.find(id, (err, result) => flowCallback(err, result));
 		},
 		(checked, flowCallback) => {
 			if (checked) {
-				provinces.delete(checked._id, (err, result) => flowCallback(err, null))
+				reports.delete(checked._id, (err, result) => flowCallback(err, null))
 			} else {
 				flowCallback('Data with id ' + id + ' not found.');
 			}
