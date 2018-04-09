@@ -27,5 +27,6 @@ exports.close = (callback) => {
 };
 
 exports.get 			= () => (state.db);
+exports.isObjectID      = (stringID) => (ObjectID.isValid(stringID));
 exports.toObjectID      = (stringID) => (ObjectID.isValid(stringID) ? new ObjectID(stringID) : null);
 exports.getCollection   = (table) => (state.db.collection(table));
