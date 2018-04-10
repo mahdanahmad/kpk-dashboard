@@ -78,7 +78,7 @@ MongoClient.connect(db_url, (err, client) => {
 
 					if (province_id !== 'NULL') {
 						data.push({
-							date: moment(row.Tanggal, 'DD/MM/YY HH:mm').format('YYYY-MM-DD'),
+							date: moment(row.Tanggal, 'DD/MM/YY HH:mm').toDate(),
 							context: [row.Delik, row.Instansi].join(' ').toLowerCase().replace('\'', ''),
 							source: 'kpk',
 							city_id: getID(row['Kabupaten/Kota'], 'cities'),
@@ -98,7 +98,7 @@ MongoClient.connect(db_url, (err, client) => {
 
 					if (province_id !== 'NULL') {
 						data.push({
-							date: moment(row.Tanggal, 'DD/MM/YY HH:mm').format('YYYY-MM-DD'),
+							date: moment(row.Tanggal, 'DD/MM/YY HH:mm').toDate(),
 							context: [row.jabatan_terlapor, row.id_dugaan_maladministrasi].join(' ').toLowerCase().replace('\'', ''),
 							source: 'ombudsman',
 							city_id: getID(row.kota_kab_terlapor, 'cities'),
