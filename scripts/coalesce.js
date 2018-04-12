@@ -30,6 +30,8 @@ function getID(data, state) {
 	return _.chain(mapped[state]).get((_.chain(fallback[state]).keys().includes(data).value() ? fallback[state][data] : data), 'NULL').value();
 }
 
+String.prototype.titlecase	= function() { return this.toLowerCase().replace(/\b\w/g, l => l.toUpperCase()); }
+
 MongoClient.connect(db_url, (err, client) => {
 	if (err) throw err;
 	let db	= client.db(process.env.DB_DATABASE);
@@ -56,7 +58,7 @@ MongoClient.connect(db_url, (err, client) => {
 			}, (err) => flowCallback(err));
 		},
 		(flowCallback) => {
-			db.collection('reports').insertMany(reports.map((o) => ({ delik: o })), (err, result) => flowCallback(err));
+			db.collection('reports').insertMany(reports.map((o, key) => ({ id: (key + 1), delik: o })), (err, result) => flowCallback(err));
 		},
 		(flowCallback) => {
 			let data = [];
@@ -65,7 +67,7 @@ MongoClient.connect(db_url, (err, client) => {
 				.fromPath(init_root + 'taksonomi.csv', _.assign(base_params, { delimiter: ';' }))
 				.on('data', (row) => { data.push(row); })
 				.on('end', () => {
-					db.collection('categories').insertMany(data.map((o, i) => (_.assign(o, { color: palette[i] }))), (err, result) => flowCallback(err));
+					db.collection('categories').insertMany(data.map((o, i) => (_.assign(o, { id: (i + 1), color: palette[i] }))), (err, result) => flowCallback(err));
 				});
 		},
 		(flowCallback) => {
@@ -78,7 +80,7 @@ MongoClient.connect(db_url, (err, client) => {
 
 					if (province_id !== 'NULL') {
 						data.push({
-							date: moment(row.Tanggal, 'DD/MM/YY HH:mm').toDate(),
+							date: moment(row.Tanggal, 'DD/MM/YY HH.mm.ss').toDate(),
 							context: [row.Delik, row.Instansi].join(' ').toLowerCase().replace('\'', ''),
 							source: 'kpk',
 							city_id: getID(row['Kabupaten/Kota'], 'cities'),
@@ -98,7 +100,7 @@ MongoClient.connect(db_url, (err, client) => {
 
 					if (province_id !== 'NULL') {
 						data.push({
-							date: moment(row.Tanggal, 'DD/MM/YY HH:mm').toDate(),
+							date: moment(row.created_date, 'DD/MM/YY HH.mm.ss').toDate(),
 							context: [row.jabatan_terlapor, row.id_dugaan_maladministrasi].join(' ').toLowerCase().replace('\'', ''),
 							source: 'ombudsman',
 							city_id: getID(row.kota_kab_terlapor, 'cities'),

@@ -37,8 +37,8 @@ MongoClient.connect(db_url, (err, client) => {
 			let query	= {
 				key1	: _.chain(categories).map('query').join(' or ').split(' or ').uniq().map((o) => (o.replace(/['"]+/g, '').trim())).value(),
 				key2	: _.chain(reports).map('delik').uniq().map((o) => (o.replace(/['"]+/g, '').trim())).value(),
-				cate	: _.chain(categories).map((o) => ([o._id, new RegExp(o.query.toQuery())])).fromPairs().value(),
-				delik	: _.chain(reports).map((o) => ([o._id, new RegExp(o.delik.toQuery())])).fromPairs().value()
+				cate	: _.chain(categories).map((o) => ([o.id, new RegExp(o.query.toQuery())])).fromPairs().value(),
+				delik	: _.chain(reports).map((o) => ([o.id, new RegExp(o.delik.toQuery())])).fromPairs().value()
 			}
 
 			db.collection(cache_table).insertMany(data.map((o) => _.assign(o, { keywords: {

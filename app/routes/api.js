@@ -4,10 +4,30 @@ const router  		= express.Router();
 const categories	= require('../controllers/categories');
 const provinces		= require('../controllers/provinces');
 const reports		= require('../controllers/reports');
+const chart			= require('../controllers/chart');
 
-
-
-
+// charts
+router.get('/cat', (req, res, next) => {
+	chart.categories(req.query, (result) => { res.status(result.status_code).json(result); });
+});
+router.get('/map/:prov_id?', (req, res, next) => {
+	chart.map(req.params.prov_id, req.query, (result) => { res.status(result.status_code).json(result); });
+});
+router.get('/treemap', (req, res, next) => {
+	chart.treemap(req.query, (result) => { res.status(result.status_code).json(result); });
+});
+router.get('/volume', (req, res, next) => {
+	chart.volume(req.query, (result) => { res.status(result.status_code).json(result); });
+});
+router.get('/keywords', (req, res, next) => {
+	chart.keywords(req.query, (result) => { res.status(result.status_code).json(result); });
+});
+router.get('/bipartite', (req, res, next) => {
+	chart.bipartite(req.query, (result) => { res.status(result.status_code).json(result); });
+});
+router.get('/raw', (req, res, next) => {
+	chart.raw(req.query, (result) => { res.status(result.status_code).json(result); });
+});
 
 // provinces
 router.get('/provinces/', (req, res, next) => {

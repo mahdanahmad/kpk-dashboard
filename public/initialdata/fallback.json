@@ -2,7 +2,9 @@
 	"provinces"	: {
 		"d.i. yogyakarta": "di yogyakarta",
 		"daerah istimewa yogyakarta": "di yogyakarta",
-		"nanggroe aceh darusalam": "aceh"
+		"nanggroe aceh darusalam": "aceh",
+		"kepulauan bangka belitung": "kep. bangka belitung",
+		"kepulauan riau": "kep. riau"
 	},
 	"cities" : {
 		"simeuloe": "simeulue",
