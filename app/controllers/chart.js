@@ -105,7 +105,7 @@ module.exports.map = (province_id, input, callback) => {
 						let colored		= _.chain(result).map((o) => ([o._id, _.chain(o).omit(['_id']).toPairs().maxBy((d) => (d[1])).value()])).fromPairs().value();
 						let total		= _.chain(result).map((o) => ([o._id, _.chain(o).omit(['_id']).values().sum().value()])).fromPairs().value();
 
-						flowCallback(null, locations.map((o) => _.assign(o, { total: _.get(total, o.id, 0), color: (colorMapped[_.get(colored, o.id + '[0]', null)] || null), count: _.get(colored, o.id + '[1]', 0) })));
+						flowCallback(null, _.chain(locations).map((o) => _.assign(o, { total: _.get(total, o.id, 0), color: (colorMapped[_.get(colored, o.id + '[0]', null)] || null), count: _.get(colored, o.id + '[1]', 0) })).orderBy('total', 'desc').value());
 					}
 				});
 			} else {
@@ -299,7 +299,7 @@ module.exports.keywords	= (input, callback) => {
 							{ '$unwind': '$_id' },
 							{ '$group': { _id: '$_id', count: { $sum: '$count' }}},
 							{ '$sort': { count: -1 } },
-							{ '$limit': limit },
+							{ '$limit': parseInt(limit) },
 							{ '$project': { _id: 0, key: '$_id', count: 1 } }
 						], {}, (err, result) => callback(err, result));
 					},
@@ -439,8 +439,8 @@ module.exports.raw	= (input, callback) => {
 
 				kpk.rawAggregate([
 					{ '$match': match },
-					{ '$limit': limit },
-					{ '$skip': skip },
+					{ '$limit': parseInt(limit) },
+					{ '$skip': parseInt(skip) },
 					{ '$project': { _id: 0, date: 1, source: 1, context: 1 }}
 				], {}, (err, result) => flowCallback(err, result));
 			} else {

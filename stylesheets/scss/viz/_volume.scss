@@ -1,0 +1,18 @@
+svg#volume-viz {
+	#times-wrapper {
+		.group-time {
+			text { fill: white; }
+			rect { fill: transparent; fill-opacity: .3; }
+			&.active { rect { fill: black; }}
+		}
+	}
+	.axis path, .axis line { stroke: white; }
+	.axis text { fill: white; }
+	#context-area { fill: $header-clr; }
+	rect.zoom { cursor: ns-resize; fill: none; pointer-events: all; }
+	.focus-area { clip-path: url(#clip); }
+	#tooltips-wrapper {
+		circle { fill: transparent; stroke: white; stroke-width: 2px; }
+		text { fill: white; }
+	}
+}
