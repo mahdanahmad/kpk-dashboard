@@ -1,0 +1,46 @@
+#auth-wrapper {
+	width: 100%; height: 100%; max-width: 750px; max-height: 500px; padding: 65px 20px 0px; border-radius: 10px; background: white; overflow: hidden;
+	position: absolute; top: 50%; left: 50%; @include transform(translate(-50%, -50%));
+	#logo-kpk { width: 125px; margin: auto; display: block; }
+	#welcome-text {
+		width: 250px; margin: 25px auto; text-align: center;
+		#ceil-text { text-transform: uppercase; font-size: 20px; font-family: 'SF Bold'; margin-bottom: 5px; color: $default-back; }
+		#floor-text {  }
+	}
+	#input-wrapper {
+		width: 325px; margin: 40px auto;
+		.input-group {
+			position: relative; &:not(:last-child) { margin-bottom: 25px; }
+			input {
+				font-size: 13px; padding: 10px 10px 10px 5px; display:block; border:none; border-bottom: 1px solid #{$default-back}; background: transparent; width: 100%; box-sizing: border-box; color: $default-back;
+				&:focus { outline: none; }
+			}
+			label {
+				color: $default-back; font-size: 13px; font-weight: normal; position: absolute; pointer-events: none; left: 5px; top: 10px;
+				@include transition(0.2s ease all);
+			}
+			.bar {
+				position: relative; display: block; width: 100%;
+				&:before, &:after {
+					content: ''; height: 2px; width: 0; bottom: 1px; position: absolute; background: $default-back;
+					@include transition(0.2s ease all);
+				}
+				&:before { left: 50%; }
+				&:after { right: 50%; }
+			}
+
+			input:focus ~ label, input:valid ~ label { top: -10px; font-size: 11px; color: $default-back; }
+			input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
+		}
+		button {
+			width: 50%; margin: 50px auto 0px; padding: 15px;  background: $default-back; border-radius: 15px; display: block;
+			font-family: 'SF Bold'; text-transform: uppercase; color: white; text-align: center; &:disabled { background: darkgray; cursor: not-allowed!important; }
+			i { margin-left: 10px; font-size: 14px; position: relative; top: 1px; color: darkgray; }
+		}
+	}
+	#plj-wrapper {
+		width: 100px; position: absolute; text-align: center; bottom: 10px; left: 50%; @include transform(translate(-50%, 0));
+		span { font-size: 8px; }
+		img { margin-top: 3px; }
+	}
+}

@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./app/server.js localhost",
     "serve": "pm2 start ./app/server.js --name=\"kpk-dashboard\" --watch",
-    "sass": "cd stylesheets && sass --watch scss:css --style compressed"
+    "sass": "cd stylesheets/dashboard && sass --watch scss:css --style compressed",
+    "sassad": "cd stylesheets/admin && sass --watch scss:css --style compressed"
   },
   "repository": {
     "type": "git",

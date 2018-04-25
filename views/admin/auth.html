@@ -1,0 +1,28 @@
+<div id="auth-wrapper">
+	<img id="logo-kpk" src="/images/logo_kpk_color.png" alt="">
+	<div id="welcome-text">
+		<div id="ceil-text">SIGN IN</div>
+		<div id="floor-text">Hello there! Insert your credetial below to start managing this dashboard.</div>
+	</div>
+	<form id="input-wrapper" ng-submit="login()">
+		<div id="username-group" class="input-group">
+			<input type="text" ng-model="username" required />
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Username</label>
+		</div>
+		<div id="password-group" class="input-group">
+			<input type="password" ng-model="password" required />
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Password</label>
+		</div>
+		<button type="submit" class="cursor-pointer" ng-disabled="disabled()">
+			Sign In Now <i ng-hide="disabled()" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+		</button>
+	</form>
+	<div id="plj-wrapper">
+		<span>in collaboration with</span>
+		<img src="/images/logo_plj_color.png" alt="">
+	</div>
+</div>
