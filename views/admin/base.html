@@ -1,0 +1,21 @@
+<div id="base-wrapper">
+	<div id="sidebar">
+		<div id="sidebar-logo"></div>
+		<div id="sidebar-menu">
+			<div id="sidebar-menu-wrapper">
+				<div class="sidebar-menu-container cursor-pointer" ng-repeat="menu in menus" ng-click="setActive(menu.state)">
+					<div class="sidebar-menu-content" ng-class="{ active: menu.state == active }">
+						<i class="fa fa-{{ menu.icon }}" aria-hidden="true"></i>
+						<span>{{ menu.title }}</span>
+					</div>
+				</div>
+			</div
+		</div>
+		<div id="sidebar-opts">
+			<div id="button-wrapper">
+				<i class="fa fa-cog cursor-pointer" aria-hidden="true" ng-click="editprofile()" tooltips tooltip-template="change password" tooltip-side="right"></i>
+				<i class="fa fa-power-off cursor-pointer" aria-hidden="true" ng-click="logout()" tooltips tooltip-template="log out" tooltip-side="right"></i>
+			</div>
+		</div>
+	</div>
+</div>

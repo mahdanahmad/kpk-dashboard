@@ -5,7 +5,7 @@
 	#welcome-text {
 		width: 250px; margin: 25px auto; text-align: center;
 		#ceil-text { text-transform: uppercase; font-size: 20px; font-family: 'SF Bold'; margin-bottom: 5px; color: $default-back; }
-		#floor-text {  }
+		#floor-text { &.error { color: firebrick; } }
 	}
 	#input-wrapper {
 		width: 325px; margin: 40px auto;

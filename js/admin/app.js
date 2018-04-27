@@ -1,5 +1,5 @@
 var angular	= angular;
-var app		= angular.module('app', ['ui.router', ('ct.ui.router.extras.core'), 'permission', 'permission.ui', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate']);
+var app		= angular.module('app', ['ui.router', ('ct.ui.router.extras.core'), 'permission', 'permission.ui', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', '720kb.tooltips']);
 
 app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
     'use strict';
@@ -17,7 +17,13 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
             url         : '/auth',
             templateUrl : 'auth.html',
             controller  : 'AuthController',
-            // data        : { permissions: { except: ['isAuthorized'], redirectTo: 'dashboard.statistic' } }
+            data        : { permissions: { except: ['isAuthorized'], redirectTo: 'base' } }
+        })
+        .state('base', {
+            url         : '/',
+            templateUrl : 'base.html',
+            controller  : 'BaseController',
+            data        : { permissions: { only: ['isAuthorized'], redirectTo: 'auth' } }
         })
 
 	localStorageServiceProvider.setPrefix('kpk-dashboard');
@@ -30,6 +36,6 @@ app.controller('MainController', ['$scope', '$rootScope', '$location', 'localSto
 }]);
 
 app.run(['PermPermissionStore', 'localStorageService', '$templateCache', function(PermPermissionStore, localStorageService, $templateCache) {
-    PermPermissionStore.definePermission('isAuthorized', () => (!_.isNull(localStorageService.get('id'))));
+    PermPermissionStore.definePermission('isAuthorized', () => (!_.isNull(localStorageService.get('_id'))));
 
 }]);

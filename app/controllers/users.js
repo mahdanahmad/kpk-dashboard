@@ -185,10 +185,11 @@ module.exports.auth = (input, callback) => {
 
 	async.waterfall([
 		(flowCallback) => {
-			users.findOne({ username: input.username, password: input.password }, (err, result) => flowCallback(err, !_.isNil(result)));
-		},
-		(checked, flowCallback) => {
-			flowCallback(checked ? null : 'Your username and password does not matched.', null);
+			users.findOne({ username: input.username, password: input.password }, (err, result) => {
+				if (err) { flowCallback(err); }
+				else if (_.isNil(result)) { flowCallback('Your username and password does not matched.'); }
+				else { flowCallback(null, result._id); }
+			});
 		}
 	], (err, asyncResult) => {
 		if (err) {

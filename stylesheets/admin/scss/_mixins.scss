@@ -35,6 +35,18 @@
     transition: $transition;
 }
 
+@mixin box-shadow($box-shadow...) {
+	-webkit-box-shadow: $box-shadow;
+	-moz-box-shadow: $box-shadow;
+	box-shadow: $box-shadow;
+}
+
+@mixin box-sizing($box-sizing...) {
+	-webkit-box-sizing: $box-sizing;
+	-moz-box-sizing: $box-sizing;
+	box-sizing: $box-sizing;
+}
+
 @mixin gradient($first, $second) {
     background: #{$first}; /* Old browsers */
     background: -moz-linear-gradient(left, #{$first} 0%, #{$second} 100%); /* FF3.6-15 */

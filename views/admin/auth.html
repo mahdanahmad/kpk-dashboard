@@ -2,9 +2,9 @@
 	<img id="logo-kpk" src="/images/logo_kpk_color.png" alt="">
 	<div id="welcome-text">
 		<div id="ceil-text">SIGN IN</div>
-		<div id="floor-text">Hello there! Insert your credetial below to start managing this dashboard.</div>
+		<div id="floor-text" ng-class="{ error: iserror }">{{ msg }}</div>
 	</div>
-	<form id="input-wrapper" ng-submit="login()">
+	<form id="input-wrapper" ng-submit="signin()">
 		<div id="username-group" class="input-group">
 			<input type="text" ng-model="username" required />
 			<span class="highlight"></span>
