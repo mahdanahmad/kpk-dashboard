@@ -13,7 +13,7 @@ app.controller('BaseController', ['$scope', '$state', '$location', 'localStorage
 	$scope.setActive	= (selected) => { $scope.active = selected; }
 
 	$scope.logout		= () => {
-		localStorageService.remove('id', 'role');
+		localStorageService.remove('_id', 'role');
 		$state.go('auth');
 	};
 }]);
