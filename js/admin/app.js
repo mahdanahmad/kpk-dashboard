@@ -17,14 +17,35 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
             url         : '/auth',
             templateUrl : 'auth.html',
             controller  : 'AuthController',
-            data        : { permissions: { except: ['isAuthorized'], redirectTo: 'base' } }
+            data        : { permissions: { except: ['isAuthorized'], redirectTo: 'base.categories' } }
         })
         .state('base', {
             url         : '/',
             templateUrl : 'base.html',
             controller  : 'BaseController',
+			abstract    : true,
             data        : { permissions: { only: ['isAuthorized'], redirectTo: 'auth' } }
         })
+	        .state('base.categories', {
+	            url         : 'categories',
+	            templateUrl : 'categories.html',
+	            controller  : 'CategoriesController'
+	        })
+	        .state('base.report', {
+	            url         : 'report',
+	            templateUrl : 'report.html',
+	            controller  : 'ReportController'
+	        })
+	        .state('base.upload', {
+	            url         : 'upload',
+	            templateUrl : 'upload.html',
+	            controller  : 'UploadController'
+	        })
+	        .state('base.users', {
+	            url         : 'users',
+	            templateUrl : 'users.html',
+	            controller  : 'UsersController'
+	        })
 
 	localStorageServiceProvider.setPrefix('kpk-dashboard');
 	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';

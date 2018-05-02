@@ -17,7 +17,7 @@ app.controller('AuthController', ['$scope', '$state', 'localStorageService', 'fe
 				localStorageService.set('_id', result.result);
 				localStorageService.set('username', $scope.username);
 
-				$state.go('base');
+				$state.go('base.categories');
 			} else {
 				$scope.iserror	= true;
 				$scope.msg		= result.message;

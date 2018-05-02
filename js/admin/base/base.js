@@ -9,8 +9,8 @@ app.controller('BaseController', ['$scope', '$state', '$location', 'localStorage
 		{ title: 'Users', icon: 'users', state: 'users' },
 	];
 
-	$scope.active		= '';
-	$scope.setActive	= (selected) => { $scope.active = selected; }
+	$scope.active		= $location.url().split('/')[1];
+	$scope.setActive	= (selected) => { $scope.active = selected; $state.go('base.' + selected); }
 
 	$scope.logout		= () => {
 		localStorageService.remove('_id', 'role');
