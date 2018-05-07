@@ -3,6 +3,7 @@
 
 @import "auth/auth";
 @import "base/base";
+@import "dialog/dialog";
 
 a { cursor: pointer; text-decoration: none; color: black; }
 ul { list-style-type: none; margin: 0px; padding: 0px; }
@@ -13,6 +14,7 @@ input[type=number] { -moz-appearance:textfield; }
 input::-webkit-inner-spin-button, input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 *:focus, select { outline: none!important; }
 .bold { font-weight: 700 !important; }
+.text-justify { text-align: justify; }
 .uppercase { text-transform: uppercase !important; }
 .capitalize { text-transform: capitalize!important; }
 .float-left { float: left!important; display: inline-block; }

@@ -1,0 +1,6 @@
+<form id="notification-wrapper" ng-submit="closeThisDialog()">
+	<div id="notification-content" class="modal-content" ng-bind-html="trust(ngDialogData.content)"></div>
+	<div id="notification-buttons" class="buttons-wrapper">
+		<button type="submit" class="confirm-button cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> OK</button>
+	</div>
+</form>

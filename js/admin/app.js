@@ -1,5 +1,5 @@
 var angular	= angular;
-var app		= angular.module('app', ['ui.router', ('ct.ui.router.extras.core'), 'permission', 'permission.ui', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', '720kb.tooltips']);
+var app		= angular.module('app', ['ui.router', ('ct.ui.router.extras.core'), 'permission', 'permission.ui', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', '720kb.tooltips', 'ngDialog']);
 
 app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
     'use strict';

@@ -1,0 +1,20 @@
+
+
+.ngdialog {
+	z-index: 50; padding-bottom: 0px!important; //padding-top: 125px!important;
+	.ngdialog-content {
+		background: #f0f0f0;
+		.modal-header { width: 100%; font-family: $signika; font-size: 30px; font-weight: bolder; text-align: center; padding: 10px 0px; letter-spacing: -2px; }
+		.modal-content { text-align: center; margin: 25px 0px; font-size: 16px; font-family: $signika-neg; }
+		.buttons-wrapper {
+			width: 100%; @include clearfix();
+			button {
+				width: 50%; margin: auto; height: 30px; font-size: 13px; border-radius: 3px; border: none; display: block;
+				&.confirm-button { background: $button-clr; color: white; }
+				&.cancel-button { background: white; border: 1px solid #ddd; }
+				&.error-button { background: firebrick; color: white; }
+			}
+			&#confirm-buttons > button { width: 48%; margin: 0px 1%; float: left; display: inline-block; }
+		}
+	}
+}

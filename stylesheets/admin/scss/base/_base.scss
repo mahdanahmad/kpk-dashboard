@@ -1,3 +1,5 @@
+@import "global";
+
 @import "categories";
 @import "report";
 @import "upload";
@@ -6,7 +8,7 @@
 #base-wrapper {
 	width: 100%; height: 100%; background: white;
 	#sidebar {
-		position: relative; height: 100%; width: $sidebar-width; background: $default-back; display: inline-block; float: left; position: relative; @include box-shadow(4px 0px $sidebar-shadow);
+		position: relative; height: 100%; width: $sidebar-width; background: $default-back; display: inline-block; float: left; position: relative; z-index: 28; @include box-shadow(4px 0px $sidebar-shadow);
 		#sidebar-logo {
 			position: relative; width: calc(#{$sidebar-width} - 15px); height: calc(#{$sidebar-width} - 15px); padding: 7.5px;
 		}
@@ -18,6 +20,7 @@
 					width: 100%; padding: 5px 0px;
 					.sidebar-menu-content {
 						width: $menu-size; height: $menu-size; line-height: $menu-size; margin: auto; background: $sidebar-clr; border-radius: 5px; z-index: 82; position:relative;
+						text-transform: lowercase; font: $signika;
 						& > i {
 							font-size: 17px; margin-left: $icon-margin; position: relative; top: 2px;
 							&.fa-files-o {  }
