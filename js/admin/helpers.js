@@ -13,12 +13,23 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 	);
 
 	return {
+		category: (content, callback) => {
+			let dialog	= createDialog(content, 'category', ['$scope', ($scope) => {
+				$scope.data			= $scope.ngDialogData.content || {};
+				$scope.clrSetting	= {
+					defaultValue	: '#FFFFFF',
+					control			: 'hue',
+				}
+
+			}], 600);
+			dialog.closePromise.then((data) => { callback(_.isObject(data.value) ? data.value : null); });
+		},
 		confirm: (content, callback) => {
 			let dialog	= createDialog(content, 'confirm', ['$scope', ($scope) => { }]);
 			dialog.closePromise.then((data) => { callback(data.value == 'yes'); });
 		},
 		notif: (content) => {
-			let dialog	= createDialog(content, 'notif', ['$scope', '$sce', ($scope, $sce) => { $scope.trust = (string) => ($sce.trustAsHtml(string)); }], 600);
+			let dialog	= createDialog(content, 'notif', ['$scope', '$sce', ($scope, $sce) => { $scope.trust = (string) => ($sce.trustAsHtml(string)); }]);
 			// dialog.closePromise.then((data) => { callback(); });
 		},
 		error: (content) => {

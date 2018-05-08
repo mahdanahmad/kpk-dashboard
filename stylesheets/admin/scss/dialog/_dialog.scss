@@ -5,7 +5,56 @@
 	.ngdialog-content {
 		background: #f0f0f0;
 		.modal-header { width: 100%; font-family: $signika; font-size: 30px; font-weight: bolder; text-align: center; padding: 10px 0px; letter-spacing: -2px; }
-		.modal-content { text-align: center; margin: 25px 0px; font-size: 16px; font-family: $signika-neg; }
+		.modal-content {
+			text-align: center; margin: 50px 0px; font-size: 16px; font-family: $signika-neg; @include clearfix();
+			&#category-content {
+				& > div { display: inline-block; float: left; @include clearfix(); }
+				#name-group { width: 60%; }
+				#color-group {
+					width: 37.5%; margin-left: 2.5%; position: relative;
+					input {
+						font-size: 13px; padding: 10px 10px 10px 5px; border:none; border-bottom: 1px solid #{$default-back}; background: transparent; width: calc(100% - 38px); box-sizing: border-box; color: $default-back; float: right;
+						&:focus { outline: none; }
+					}
+					label { color: $default-back; font-size: 11px; font-weight: normal; position: absolute; top: -10px; left: 38px; }
+					.bar {
+						position: absolute; display: block; width: calc(100% - 38px); bottom: 0px; right: 0px;
+						&:before, &:after {
+							content: ''; height: 2px; width: 0; bottom: 1px; position: absolute; background: $default-back;
+							@include transition(0.2s ease all);
+						}
+						&:before { left: 50%; }
+						&:after { right: 50%; }
+						&.focus { &:after, &:before { width: 50%; }}
+					}
+				}
+				#query-group { width: 100%; }
+			}
+
+			.input-group {
+				position: relative; &:not(:last-child) { margin-bottom: 25px; }
+				input, textarea {
+					font-size: 13px; padding: 10px 10px 10px 5px; display:block; border:none; border-bottom: 1px solid #{$default-back}; background: transparent; width: 100%; box-sizing: border-box; color: $default-back;
+					&:focus { outline: none; }
+				}
+				label {
+					color: $default-back; font-size: 13px; font-weight: normal; position: absolute; pointer-events: none; left: 5px; top: 10px;
+					@include transition(0.2s ease all);
+				}
+				.bar {
+					position: relative; display: block; width: 100%;
+					&:before, &:after {
+						content: ''; height: 2px; width: 0; bottom: 1px; position: absolute; background: $default-back;
+						@include transition(0.2s ease all);
+					}
+					&:before { left: 50%; }
+					&:after { right: 50%; }
+				}
+
+				input:focus ~ label, input:valid ~ label, textarea:focus ~ label, textarea:valid ~ label { top: -10px; font-size: 11px; color: $default-back; }
+				input:focus ~ .bar:before, input:focus ~ .bar:after, textarea:focus ~ .bar:before, textarea:focus ~ .bar:after { width: 50%; }
+			}
+		}
 		.buttons-wrapper {
 			width: 100%; @include clearfix();
 			button {
@@ -14,7 +63,7 @@
 				&.cancel-button { background: white; border: 1px solid #ddd; }
 				&.error-button { background: firebrick; color: white; }
 			}
-			&#confirm-buttons > button { width: 48%; margin: 0px 1%; float: left; display: inline-block; }
+			&.two-buttons > button { width: 48%; margin: 0px 1%; float: left; display: inline-block; }
 		}
 	}
 }

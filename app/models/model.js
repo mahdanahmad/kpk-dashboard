@@ -87,7 +87,7 @@ class Model {
 		db.getCollection(this.tableName).findOne({ _id: db.toObjectID(id), deleted_at: { $exists: false }}, (err, result) => {
 			if (err) { return callback(err); }
 			if (_.isNil(result)) { return callback(this.tableName + ' with id ' + id + ' not found.'); }
-			
+
 			let cherry    = _.pickBy(update, (o, key) => (_.chain(this.fillable).difference(this.preserved).includes(key).value() && !_.isEmpty(o)));
 			if (!_.isEmpty(cherry)) {
 				async.mapValues(_.pickBy(this.ascertain, (o, key) => (_.includes(_.keys(cherry), key))), (tableTarget, dataKey, filterCallback) => {
@@ -150,6 +150,14 @@ class Model {
 		});
 	}
 
+	getLastId(callback) {
+		let cate_table	= 'categories';
+		if (this.tableName == cate_table) {
+			db.getCollection(cate_table).find().sort({ id: -1 }).limit(1).project({ _id: 0, id: 1 }).toArray().then((result) => { callback(null, result[0].id + 1 ); });
+		} else {
+			callback(null);
+		}
+	}
 }
 
 module.exports = Model;

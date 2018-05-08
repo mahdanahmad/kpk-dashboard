@@ -1,0 +1,29 @@
+<form id="category-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="adminmodal-header" class="modal-header cursor-default">
+		{{ data._id ? 'edit' : 'new' }} category
+	</div>
+	<div id="category-content" class="modal-content">
+		<div id="name-group" class="input-group">
+			<input type="text" ng-model="data.name" required />
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Name</label>
+		</div>
+		<div id="color-group">
+			<input minicolors="clrSetting" type="text" ng-model="data.color" ng-focus="focus = true" ng-blur="focus = false" required />
+			<span class="highlight"></span>
+			<span class="bar" ng-class="{ focus: focus }"></span>
+			<label>Color</label>
+		</div>
+		<div id="query-group" class="input-group">
+			<textarea ng-model="data.query" rows="4" required></textarea>
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Query</label>
+		</div>
+	</div>
+	<div id="category-buttons" class="buttons-wrapper two-buttons">
+		<button type="submit" class="confirm-button cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data._id ? 'Edit' : 'New' }} Category</button>
+		<button type="button" class="cancel-button cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> Batal</button>
+	</div>
+</form>

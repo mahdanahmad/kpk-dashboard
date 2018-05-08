@@ -47,7 +47,10 @@ module.exports.store = (input, callback) => {
 
 	async.waterfall([
 		(flowCallback) => {
-			let ascertain	= {};
+			categories.getLastId((err, result) => flowCallback(err, result));
+		},
+		(id, flowCallback) => {
+			let ascertain	= { id };
 			categories.insertOne(_.assign(input, ascertain), (err, result) => flowCallback(err, result));
 		},
 	], (err, asyncResult) => {

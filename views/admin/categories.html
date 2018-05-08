@@ -9,7 +9,7 @@
 		<div class="header-divider"></div>
 		<div class="header-another">
 			<div class="header-button">
-				<div class="button-like cursor-pointer" ng-click="newUser()"><i class="fa fa-plus" aria-hidden="true"></i> New Category</div>
+				<div class="button-like cursor-pointer" ng-click="new()"><i class="fa fa-plus" aria-hidden="true"></i> New Category</div>
 			</div>
 		</div>
 	</div>
@@ -19,8 +19,8 @@
 			<div class="card-content"><span>{{ o.name }}</span></div>
 			<div class="card-footer" ng-style="{color: o.color}">{{ o.color }}</div>
 			<div class="buttons-wrapper">
-				<i class="fa fa-pencil cursor-pointer" ng-click="" tooltips tooltip-template="edit category"></i>
-				<i class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.name)" tooltips tooltip-template="delete category"></i>
+				<i class="fa fa-pencil cursor-pointer" ng-click="edit(o._id)" tooltips tooltip-template="edit category"></i>
+				<i class="fa fa-times cursor-pointer" ng-click="delete(o._id, o.name)" tooltips tooltip-template="delete category"></i>
 			</div>
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 const Model     = require('./model');
 
 const table     = 'categories';
-const fillable  = ['name', 'description', 'query', 'remarks', 'order', 'icon', 'color'];
+const fillable  = ['name', 'description', 'id', 'query', 'remarks', 'order', 'icon', 'color'];
 const required  = ['name', 'query'];
 const preserved	= [];
 const hidden	= [];
