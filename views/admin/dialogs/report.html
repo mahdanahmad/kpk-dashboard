@@ -1,0 +1,17 @@
+<form id="report-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="adminmodal-header" class="modal-header cursor-default">
+		{{ data._id ? 'edit' : 'new' }} report type
+	</div>
+	<div id="report-content" class="modal-content">
+		<div id="name-group" class="input-group">
+			<input type="text" ng-model="data.delik" required />
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Delik</label>
+		</div>
+	</div>
+	<div id="report-buttons" class="buttons-wrapper two-buttons">
+		<button type="submit" class="confirm-button cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data._id ? 'Edit' : 'New' }} Report Types</button>
+		<button type="button" class="cancel-button cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+	</div>
+</form>

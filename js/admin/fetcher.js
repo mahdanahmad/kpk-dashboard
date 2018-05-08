@@ -14,5 +14,11 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', function($http, $httpPa
 		putCategory: (id, data, callback) => { $http.put(baseURL + 'categories/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		deleteCategory: (id, callback) => { $http.delete(baseURL + 'categories/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
+		getReports: (callback) => { $http.get(baseURL + 'reports', config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		getReport: (id, callback) => { $http.get(baseURL + 'reports/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		postReport: (data, callback) => { $http.post(baseURL + 'reports', data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		putReport: (id, data, callback) => { $http.put(baseURL + 'reports/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		deleteReport: (id, callback) => { $http.delete(baseURL + 'reports/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+
 	};
 }]);

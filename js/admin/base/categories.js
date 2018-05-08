@@ -18,13 +18,15 @@ app.controller('CategoriesController', ['$scope', '$timeout', 'localStorageServi
 		fetcher.getCategory(id, (abel) => {
 			if (abel.response == 'OK' && abel.status_code == 200) {
 				dialog.category(abel.result, (res) => {
-					fetcher.putCategory(id, res, (result) => {
-						if (result.response == 'OK' && result.status_code == 200) {
-							init();
-						} else {
-							dialog.error(result.message);
-						}
-					});
+					if (res) {
+						fetcher.putCategory(id, res, (result) => {
+							if (result.response == 'OK' && result.status_code == 200) {
+								init();
+							} else {
+								dialog.error(result.message);
+							}
+						});
+					}
 				});
 			} else {
 				dialog.error(abel.message);
@@ -48,13 +50,15 @@ app.controller('CategoriesController', ['$scope', '$timeout', 'localStorageServi
 
 	$scope.new		= () => {
 		dialog.category(null, (res) => {
-			fetcher.postCategory(res, (result) => {
-				if (result.response == 'OK' && result.status_code == 200) {
-					init();
-				} else {
-					dialog.error(result.message);
-				}
-			});
+			if (res) {
+				fetcher.postCategory(res, (result) => {
+					if (result.response == 'OK' && result.status_code == 200) {
+						init();
+					} else {
+						dialog.error(result.message);
+					}
+				});
+			}
 		});
 	}
 

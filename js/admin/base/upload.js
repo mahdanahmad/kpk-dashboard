@@ -1,4 +1,4 @@
-app.controller('UploadController', ['$scope', 'localStorageService', 'fetcher', function ($scope, localStorageService, fetcher) {
+app.controller('UploadController', ['$scope', '$timeout', 'localStorageService', 'fetcher', 'dialog', function ($scope, $timeout, localStorageService, fetcher, dialog) {
     'use strict';
 
 }]);

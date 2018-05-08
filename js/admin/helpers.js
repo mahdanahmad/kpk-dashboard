@@ -20,7 +20,12 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 					defaultValue	: '#FFFFFF',
 					control			: 'hue',
 				}
-
+			}], 600);
+			dialog.closePromise.then((data) => { callback(_.isObject(data.value) ? data.value : null); });
+		},
+		report: (content, callback) => {
+			let dialog	= createDialog(content, 'report', ['$scope', ($scope) => {
+				$scope.data			= $scope.ngDialogData.content || {};
 			}], 600);
 			dialog.closePromise.then((data) => { callback(_.isObject(data.value) ? data.value : null); });
 		},

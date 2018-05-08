@@ -1,4 +1,4 @@
-app.controller('UsersController', ['$scope', 'localStorageService', 'fetcher', function ($scope, localStorageService, fetcher) {
+app.controller('UsersController', ['$scope', '$timeout', 'localStorageService', 'fetcher', 'dialog', function ($scope, $timeout, localStorageService, fetcher, dialog) {
     'use strict';
 
 }]);

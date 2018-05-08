@@ -1,1 +1,26 @@
-report page.
+<div id="categories-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">report types</div>
+		<div class="header-divider"></div>
+		<div class="header-input-container">
+			<div class="search-sign"><i class="fa fa-search" aria-hidden="true"></i></div>
+			<input type="text" placeholder="type to search category" ng-model="search.delik" type-everywhere>
+		</div>
+		<div class="header-divider"></div>
+		<div class="header-another">
+			<div class="header-button">
+				<div class="button-like cursor-pointer" ng-click="new()"><i class="fa fa-plus" aria-hidden="true"></i> New Type</div>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="card cursor-default" ng-repeat="o in data | filter:search">
+			<div class="card-header">report type</div>
+			<div class="card-content"><span>{{ o.delik }}</span></div>
+			<div class="buttons-wrapper">
+				<i class="fa fa-pencil cursor-pointer" ng-click="edit(o._id)" tooltips tooltip-template="edit type"></i>
+				<i class="fa fa-times cursor-pointer" ng-click="delete(o._id, o.delik)" tooltips tooltip-template="delete type"></i>
+			</div>
+		</div>
+	</div>
+</div>
