@@ -1,6 +1,12 @@
 app.controller('BaseController', ['$scope', '$state', '$location', 'localStorageService', 'fetcher', function ($scope, $state, $location, localStorageService, fetcher) {
     'use strict';
 
+	$scope.super	= 0;
+
+	fetcher.getUser(localStorageService.get('_id'), (result) => {
+		$scope.super	= _.get(result, 'result.super', 0);
+		localStorageService.set('super', _.get(result, 'result.super', 0));
+	});
 
 	$scope.menus	= [
 		{ title: 'Categories', icon: 'files-o', state: 'categories' },
@@ -13,7 +19,7 @@ app.controller('BaseController', ['$scope', '$state', '$location', 'localStorage
 	$scope.setActive	= (selected) => { $scope.active = selected; $state.go('base.' + selected); }
 
 	$scope.logout		= () => {
-		localStorageService.remove('_id', 'role');
+		localStorageService.remove('_id', 'super');
 		$state.go('auth');
 	};
 }]);

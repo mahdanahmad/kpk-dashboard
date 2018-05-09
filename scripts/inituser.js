@@ -17,7 +17,7 @@ const user_table	= 'users';
 const user_data		= {
 	username		: 'admin',
 	password		: SHA256('ketikaja').toString(),
-	role			: 'super'
+	super			: 1
 }
 
 MongoClient.connect(db_url, (err, client) => {

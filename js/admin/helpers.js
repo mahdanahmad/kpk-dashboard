@@ -29,6 +29,12 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 			}], 600);
 			dialog.closePromise.then((data) => { callback(_.isObject(data.value) ? data.value : null); });
 		},
+		user: (content, callback) => {
+			let dialog	= createDialog(content, 'user', ['$scope', ($scope) => {
+				$scope.data			= $scope.ngDialogData.content || {};
+			}], 600);
+			dialog.closePromise.then((data) => { callback(_.isObject(data.value) ? data.value : null); });
+		},
 		confirm: (content, callback) => {
 			let dialog	= createDialog(content, 'confirm', ['$scope', ($scope) => { }]);
 			dialog.closePromise.then((data) => { callback(data.value == 'yes'); });

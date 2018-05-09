@@ -1,0 +1,23 @@
+<form id="user-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="adminmodal-header" class="modal-header cursor-default">
+		{{ data._id ? 'edit' : 'new' }} user
+	</div>
+	<div id="user-content" class="modal-content">
+		<div id="username-group" class="input-group">
+			<input type="text" ng-model="data.username" required />
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Username</label>
+		</div>
+		<div id="password-group" class="input-group">
+			<input type="password" ng-model="data.password" ng-required="!data._id" />
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>{{ data._id ? 'New ' : '' }}Password</label>
+		</div>
+	</div>
+	<div id="user-buttons" class="buttons-wrapper two-buttons">
+		<button type="submit" class="confirm-button cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data._id ? 'Edit' : 'New' }} User</button>
+		<button type="button" class="cancel-button cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+	</div>
+</form>

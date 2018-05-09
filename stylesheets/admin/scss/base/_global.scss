@@ -8,7 +8,7 @@
 		}
 		div.header-divider { width: 1px; height: calc(#{$header-heigth} / 2); background: #e6e6e6; margin: calc(#{$header-heigth} / 4) 0px;}
 		div.header-input-container {
-			width: calc(50% - 1px); @include clearfix();
+			width: calc(50% - 1px); @include clearfix(); min-height: $header-heigth;
 			& > .search-sign { width: 40px; display: inline-block; text-align: center; font-size: 17px; line-height: $header-heigth; float: left; color: $search-clr; }
 			& > input { width: calc(100% - 40px); display: inline-block; border: none; height: $header-heigth; float: right; padding: 0px; font-size: 14px; color: $search-clr; font-family: $signika-neg; }
 		}
@@ -32,7 +32,7 @@
 				text-align: center; width: 80%; margin: auto; min-height: 75px; display: table;
 				span { display: table-cell; vertical-align: middle; }
 			}
-			.card-footer { text-align: right; }
+			.card-footer { text-align: right; min-height: 15px; width: 100%; }
 			.buttons-wrapper {
 				position: absolute; top: 7.5px; right: 10px;
 				i { position: relative; }

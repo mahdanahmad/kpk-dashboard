@@ -44,7 +44,8 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 	        .state('base.users', {
 	            url         : 'users',
 	            templateUrl : 'users.html',
-	            controller  : 'UsersController'
+	            controller  : 'UsersController',
+				data        : { permissions: { only: ['isSuper'], redirectTo: 'base.categories' } }
 	        })
 
 	localStorageServiceProvider.setPrefix('kpk-dashboard');
@@ -58,5 +59,6 @@ app.controller('MainController', ['$scope', '$rootScope', '$location', 'localSto
 
 app.run(['PermPermissionStore', 'localStorageService', '$templateCache', function(PermPermissionStore, localStorageService, $templateCache) {
     PermPermissionStore.definePermission('isAuthorized', () => (!_.isNull(localStorageService.get('_id'))));
+    PermPermissionStore.definePermission('isSuper', () => (localStorageService.get('super')));
 
 }]);

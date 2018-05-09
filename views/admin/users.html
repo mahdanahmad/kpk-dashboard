@@ -1,1 +1,27 @@
-users page.
+<div id="users-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">users</div>
+		<div class="header-divider"></div>
+		<div class="header-input-container">
+			<div class="search-sign"><i class="fa fa-search" aria-hidden="true"></i></div>
+			<input type="text" placeholder="type to search user" ng-model="search.username" type-everywhere>
+		</div>
+		<div class="header-divider"></div>
+		<div class="header-another">
+			<div class="header-button">
+				<div class="button-like cursor-pointer" ng-click="new()"><i class="fa fa-plus" aria-hidden="true"></i> New User</div>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="card cursor-default" ng-repeat="o in data | filter:search">
+			<div class="card-header">user</div>
+			<div class="card-content"><span>{{ o.username }}</span></div>
+			<div class="card-footer"><i ng-show="o.super" class="fa fa-bullseye" aria-hidden="true"></i></div>
+			<div class="buttons-wrapper" ng-if="isCurrent(o._id)">
+				<i class="fa fa-pencil cursor-pointer" ng-click="edit(o._id)" tooltips tooltip-template="edit user"></i>
+				<i class="fa fa-times cursor-pointer" ng-click="delete(o._id, o.username)" tooltips tooltip-template="delete user"></i>
+			</div>
+		</div>
+	</div>
+</div>

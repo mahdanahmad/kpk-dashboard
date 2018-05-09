@@ -20,5 +20,11 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', function($http, $httpPa
 		putReport: (id, data, callback) => { $http.put(baseURL + 'reports/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		deleteReport: (id, callback) => { $http.delete(baseURL + 'reports/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
+		getUsers: (callback) => { $http.get(baseURL + 'users', config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		getUser: (id, callback) => { $http.get(baseURL + 'users/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		postUser: (data, callback) => { $http.post(baseURL + 'users', data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		putUser: (id, data, callback) => { $http.put(baseURL + 'users/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		deleteUser: (id, callback) => { $http.delete(baseURL + 'users/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+
 	};
 }]);

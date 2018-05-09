@@ -3,7 +3,7 @@
 		<div id="sidebar-logo"></div>
 		<div id="sidebar-menu">
 			<div id="sidebar-menu-wrapper">
-				<div class="sidebar-menu-container cursor-pointer" ng-repeat="menu in menus" ng-click="setActive(menu.state)">
+				<div class="sidebar-menu-container cursor-pointer" ng-repeat="menu in menus" ng-click="setActive(menu.state)" ng-hide="menu.state == 'users' && !super">
 					<div class="sidebar-menu-content" ng-class="{ active: menu.state == active }">
 						<i class="fa fa-{{ menu.icon }}" aria-hidden="true"></i>
 						<span>{{ menu.title }}</span>
