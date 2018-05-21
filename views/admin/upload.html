@@ -1,18 +1,20 @@
-<div id="categories-wrapper">
+<div id="upload-wrapper">
 	<div class="header">
 		<div class="header-title cursor-default">upload page</div>
 		<div class="header-divider"></div>
-		<div class="header-input-container">
-			
-		</div>
+		<div class="header-input-container"></div>
 		<div class="header-divider"></div>
 		<div class="header-another">
 			<div class="header-button">
-				<div class="button-like cursor-pointer" ng-click="down()"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download Template</div>
+				<a class="button-like cursor-pointer" target="_self" href="/template.csv"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download Template</a>
 			</div>
 		</div>
 	</div>
 	<div class="content">
-
+		<div id="upload-wrapper" ngf-drop ngf-select ng-model="file" class="cursor-pointer"
+			ngf-drag-over-class="{pattern: '*csv', accept: 'dragsuccess', reject: 'dragfailed' }" ngf-multiple="false" ngf-allow-dir="true"
+			accept=".csv" ngf-pattern="'.csv'">
+			<span>Drop CSV file or select by clicking here to upload</span>
+		</div>
 	</div>
 </div>

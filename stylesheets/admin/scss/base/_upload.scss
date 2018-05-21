@@ -1,0 +1,12 @@
+#upload-wrapper {
+	.content {
+		max-width: none!important;
+		#upload-wrapper {
+			width: calc(100% - 10px); height: calc(100% - 10px); text-align: center; font-size: 20px;
+			background: #F8F8F8; border: 5px dashed #DDD; display: table;
+			span { display: table-cell; vertical-align: middle; }
+			&.dragsuccess { border-color: $button-clr; }
+			&.dragfailed { border-color: firebrick; }
+		}
+	}
+}

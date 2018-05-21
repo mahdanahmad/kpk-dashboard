@@ -1,11 +1,15 @@
 const express 		= require('express');
 const router  		= express.Router();
 
+const multer		= require('multer');
+let upload			= multer({ dest: 'public/' });
+
 const categories	= require('../controllers/categories');
 const provinces		= require('../controllers/provinces');
 const reports		= require('../controllers/reports');
 const users			= require('../controllers/users');
 const chart			= require('../controllers/chart');
+const files			= require('../controllers/files');
 
 // charts
 router.get('/cat', (req, res, next) => {
@@ -99,6 +103,11 @@ router.delete('/users/:id', (req, res, next) => {
 });
 router.post('/auth/', (req, res, next) => {
 	users.auth(req.body, (result) => { res.status(result.status_code).json(result); });
+});
+
+// files
+router.post('/bulk/', upload.single('file'), (req, res, next) => {
+	files.bulk(req.file, (result) => { res.status(result.status_code).json(result); });
 });
 
 module.exports = router;

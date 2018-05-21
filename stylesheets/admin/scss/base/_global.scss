@@ -17,7 +17,7 @@
 			.header-button {
 				width: 85%; margin: auto;
 				& > .button-like {
-					width: 75%; margin: calc((#{$header-heigth} - 40px) / 2) auto;
+					width: 75%; margin: calc((#{$header-heigth} - 40px) / 2) auto; display: block;
 					& > i { font-size: 12px; }
 				}
 			}
