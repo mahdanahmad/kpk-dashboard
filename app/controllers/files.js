@@ -13,6 +13,9 @@ const categories	= require('../models/categories');
 
 const dateFormat	= 'YYYY-MM-DD';
 
+let out				= fs.openSync('./public/out.log', 'a');
+let err				= fs.openSync('./public/err.log', 'a');
+
 String.prototype.titlecase	= function() { return this.toLowerCase().replace(/\b\w/g, l => l.toUpperCase()); }
 
 module.exports.bulk = (inputfile, callback) => {
@@ -20,9 +23,6 @@ module.exports.bulk = (inputfile, callback) => {
 	let status_code     = 200;
 	let message         = 'Insert bulk data success.';
 	let result          = null;
-
-	let out				= fs.openSync('./public/out.log', 'a');
-	let err				= fs.openSync('./public/err.log', 'a');
 
 	async.waterfall([
 		(flowCallback) => {

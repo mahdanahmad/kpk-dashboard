@@ -1,4 +1,4 @@
-app.factory('fetcher', ['$http', '$httpParamSerializer', function($http, $httpParamSerializer) {
+app.factory('fetcher', ['$http', '$httpParamSerializer', 'Upload', function($http, $httpParamSerializer, Upload) {
 	let baseURL	= '/api/';
 
 	let config  = {
@@ -26,5 +26,6 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', function($http, $httpPa
 		putUser: (id, data, callback) => { $http.put(baseURL + 'users/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		deleteUser: (id, callback) => { $http.delete(baseURL + 'users/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
+		postBulk: (file, callback) => { Upload.upload({ url: baseURL + 'bulk', data: { file } }).then((success) => { callback(success.data); }, (error) => { callback(error.data) }) },
 	};
 }]);

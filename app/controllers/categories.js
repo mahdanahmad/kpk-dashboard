@@ -1,7 +1,13 @@
 const _				= require('lodash');
+const fs			= require('fs');
 const async			= require('async');
 
+const { spawn }		= require('child_process');
+
 const categories	= require('../models/categories');
+
+let out				= fs.openSync('./public/out.log', 'a');
+let err				= fs.openSync('./public/err.log', 'a');
 
 /**
  * Display a listing of the resource.
@@ -51,7 +57,15 @@ module.exports.store = (input, callback) => {
 		},
 		(id, flowCallback) => {
 			let ascertain	= { id };
-			categories.insertOne(_.assign(input, ascertain), (err, result) => flowCallback(err, result));
+			categories.insertOne(_.assign(input, ascertain), (err, result) => {
+				spawn('node', ['scripts/cachekpk.js'], {
+					cwd: './',
+					stdio: [ 'ignore', out, err ],
+					detached: true}
+				).unref();
+
+				flowCallback(err, result);
+			});
 		},
 	], (err, asyncResult) => {
 		if (err) {
@@ -113,7 +127,15 @@ module.exports.update = (id, input, callback) => {
 		(checked, flowCallback) => {
 			if (checked) {
 				let ascertain	= {};
-				categories.update(checked._id, _.assign(input, ascertain), (err, result) => flowCallback(err, result))
+				categories.update(checked._id, _.assign(input, ascertain), (err, result) => {
+					spawn('node', ['scripts/cachekpk.js'], {
+						cwd: './',
+						stdio: [ 'ignore', out, err ],
+						detached: true}
+					).unref();
+
+					flowCallback(err, result);
+				})
 			} else {
 				flowCallback('Data with id ' + id + ' not found.');
 			}
@@ -150,7 +172,15 @@ module.exports.destroy = (id, input, callback) => {
 		},
 		(checked, flowCallback) => {
 			if (checked) {
-				categories.delete(checked._id, (err, result) => flowCallback(err, null))
+				categories.delete(checked._id, (err, result) => {
+					spawn('node', ['scripts/cachekpk.js'], {
+						cwd: './',
+						stdio: [ 'ignore', out, err ],
+						detached: true}
+					).unref();
+
+					flowCallback(err, null);
+				})
 			} else {
 				flowCallback('Data with id ' + id + ' not found.');
 			}
