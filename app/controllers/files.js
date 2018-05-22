@@ -4,6 +4,8 @@ const csv			= require('fast-csv');
 const async			= require('async');
 const moment		= require('moment');
 
+const { spawn }		= require('child_process');
+
 const kpk			= require('../models/kpk_cache');
 const cities		= require('../models/cities');
 const provinces		= require('../models/provinces');
@@ -19,6 +21,9 @@ module.exports.bulk = (inputfile, callback) => {
 	let message         = 'Insert bulk data success.';
 	let result          = null;
 
+	let out				= fs.openSync('./public/out.log', 'a');
+	let err				= fs.openSync('./public/err.log', 'a');
+
 	async.waterfall([
 		(flowCallback) => {
 			flowCallback(!_.includes(inputfile.mimetype, 'csv') ? 'Your file is not supported' : null);
@@ -26,6 +31,11 @@ module.exports.bulk = (inputfile, callback) => {
 		(flowCallback) => {
 			fs.readFile(inputfile.path, (err, file) => {
 				if (err) { flowCallback(err) } else {
+					spawn('node', ['scripts/newdata.js', inputfile.path], {
+						cwd: './',
+						stdio: [ 'ignore', out, err ],
+						detached: true}
+					).unref();
 
 					flowCallback(null);
 				}
