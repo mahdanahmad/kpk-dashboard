@@ -1,4 +1,4 @@
-app.controller('BaseController', ['$scope', '$state', '$location', 'localStorageService', 'fetcher', function ($scope, $state, $location, localStorageService, fetcher) {
+app.controller('BaseController', ['$scope', '$state', '$location', 'localStorageService', 'fetcher', 'dialog', function ($scope, $state, $location, localStorageService, fetcher, dialog) {
     'use strict';
 
 	$scope.super	= 0;
@@ -22,4 +22,21 @@ app.controller('BaseController', ['$scope', '$state', '$location', 'localStorage
 		localStorageService.remove('_id', 'super');
 		$state.go('auth');
 	};
+
+	$scope.setting		= () => {
+		dialog.profile((res) => {
+			if (res) {
+				if (res.password !== '' && !_.isNil(res.password)) {
+					res.password = CryptoJS.SHA256(res.password).toString();
+					fetcher.putUser(localStorageService.get('_id'), res, (result) => {
+						if (result.response == 'OK' && result.status_code == 200) {
+							dialog.notif('Profile updated.');
+						} else {
+							dialog.error(result.message);
+						}
+					});
+				}
+			}
+		});
+	}
 }]);
