@@ -27,5 +27,6 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'Upload', function($htt
 		deleteUser: (id, callback) => { $http.delete(baseURL + 'users/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
 		postBulk: (file, callback) => { Upload.upload({ url: baseURL + 'bulk', data: { file } }).then((success) => { callback(success.data); }, (error) => { callback(error.data) }) },
+		getFiles: (callback) => { $http.get(baseURL + 'filelogs', config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 	};
 }]);

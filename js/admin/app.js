@@ -41,6 +41,11 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 	            templateUrl : 'upload.html',
 	            controller  : 'UploadController'
 	        })
+	        .state('base.logs', {
+	            url         : 'logs',
+	            templateUrl : 'logs.html',
+	            controller  : 'LogsController'
+	        })
 	        .state('base.users', {
 	            url         : 'users',
 	            templateUrl : 'users.html',

@@ -109,5 +109,8 @@ router.post('/auth/', (req, res, next) => {
 router.post('/bulk/', upload.single('file'), (req, res, next) => {
 	files.bulk(req.file, (result) => { res.status(result.status_code).json(result); });
 });
+router.get('/filelogs/', (req, res, next) => {
+	files.logs(req.query, (result) => { res.status(result.status_code).json(result); });
+});
 
 module.exports = router;

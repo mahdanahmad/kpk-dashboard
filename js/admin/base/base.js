@@ -12,6 +12,7 @@ app.controller('BaseController', ['$scope', '$state', '$location', 'localStorage
 		{ title: 'Categories', icon: 'files-o', state: 'categories' },
 		{ title: 'Report Types', icon: 'tags', state: 'report' },
 		{ title: 'Upload Data', icon: 'cloud-upload', state: 'upload' },
+		{ title: 'Upload Logs', icon: 'file-text', state: 'logs' },
 		{ title: 'Users', icon: 'users', state: 'users' },
 	];
 

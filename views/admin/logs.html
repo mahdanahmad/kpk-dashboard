@@ -1,0 +1,13 @@
+<div id="logs-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">file logs</div>
+		<div class="header-divider"></div>
+	</div>
+	<div class="content">
+		<div class="card cursor-default" ng-repeat="o in data | filter:search">
+			<div class="card-header">filename</div>
+			<div class="card-content"><span>{{ o.filename }}</span></div>
+			<div class="card-footer">{{ o.created_at }}</div>
+		</div>
+	</div>
+</div>
