@@ -7,8 +7,8 @@ const dateServer	= 'YYYY-MM-DD';
 const defaultDate	= { start: moment([2014]).startOf('year').format(dateFormat), end: moment([2014]).endOf('year').format(dateFormat) };
 const dateOpts		= {
 	format: dateFormat,
-	startDate: defaultDate.start,
-	endDate: defaultDate.end,
+	// startDate: defaultDate.start,
+	// endDate: defaultDate.end,
 	language: 'id',
 	startOfWeek: 'monday',
 	customArrowPrevSymbol: '<i class="fa fa-arrow-circle-left"></i>',
