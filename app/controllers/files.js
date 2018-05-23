@@ -27,7 +27,7 @@ module.exports.bulk = (inputfile, callback) => {
 
 	async.waterfall([
 		(flowCallback) => {
-			flowCallback(!_.includes(inputfile.mimetype, 'csv') ? 'Your file is not supported' : null);
+			flowCallback(_.includes(inputfile.mimetype, 'csv') || _.includes(inputfile.mimetype, 'application/vnd.ms-excel') ? null : 'Your file is not supported');
 		},
 		(flowCallback) => {
 			fs.readFile(inputfile.path, (err, file) => flowCallback(err));

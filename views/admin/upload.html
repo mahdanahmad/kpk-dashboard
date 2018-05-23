@@ -12,8 +12,8 @@
 	</div>
 	<div class="content">
 		<div id="upload-wrapper" ngf-drop ngf-select ng-model="file" class="cursor-pointer"
-			ngf-drag-over-class="{pattern: '*csv', accept: 'dragsuccess', reject: 'dragfailed' }" ngf-multiple="false" ngf-allow-dir="true"
-			accept=".csv" ngf-pattern="'.csv'">
+			ngf-drag-over-class="{pattern: '*csv,application/vnd.ms-excel', accept: 'dragsuccess', reject: 'dragfailed' }" ngf-multiple="false" ngf-allow-dir="true"
+			accept=".csv,application/vnd.ms-excel" ngf-pattern="'.csv,application/vnd.ms-excel'">
 			<span>Drop CSV file or select by clicking here to upload</span>
 		</div>
 	</div>
