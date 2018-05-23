@@ -1,1 +1,1 @@
-date (DD/MM/YY HH.mm.ss),context,source,city_id,province_id
+date (DD/MM/YY HH.mm.ss);context;source;city_id;province_id

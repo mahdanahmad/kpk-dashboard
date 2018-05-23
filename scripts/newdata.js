@@ -17,7 +17,7 @@ const data_table	= 'kpk_data';
 const cache_table	= 'kpk_cache';
 
 let filepath		= '';
-let base_params		= { headers: true, strictColumnHandling: true, trim: true, quote: "'", delimiter: ',' };
+let base_params		= { headers: true, strictColumnHandling: true, trim: true, quote: "'", delimiter: ';' };
 
 let date_format		= 'DD/MM/YY HH.mm.ss'
 
@@ -56,7 +56,7 @@ MongoClient.connect(db_url, (err, client) => {
 				.on('data', (row) => {
 					let current	= {
 						date: moment(row['date (' + date_format + ')'], date_format).toDate(),
-						context: row.context,
+						context: row.context.toLowerCase(),
 						source: row.source,
 						city_id: row.city_id,
 						province_id: row.province_id,
