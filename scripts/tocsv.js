@@ -34,7 +34,7 @@ MongoClient.connect(db_url, (err, client) => {
 						additional['date (' + date_format + ')'] = moment(o.date).format(date_format);
 
 						return _.chain(o).assign(additional).omit(['_id', 'date']).value()
-					}), {headers: true})
+					}), {headers: true, delimiter: ';'})
 					.on("finish", () => {
 						flowCallback();
 					});
